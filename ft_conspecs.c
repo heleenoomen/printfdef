@@ -6,13 +6,13 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 18:05:05 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/17 18:10:13 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/17 18:55:38 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-void	ft_modifiers(t_io *io, t_mod *modifiers)
+void	ft_conspecs(t_io *io, t_mod *modifiers)
 {
 	if (io->format[io->position] == 'c')
 		modifiers->conspec = 'c';
@@ -30,4 +30,6 @@ void	ft_modifiers(t_io *io, t_mod *modifiers)
 		modifiers->conspec = 'X';
 	else if (io->format[io->position] == 'p')
 		modifiers->conspec = 'p';
+	else if (io->format[io->position] == '%')
+		modifiers->conspec = '%';
 }

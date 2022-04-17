@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:59:17 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/17 18:38:11 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/17 18:56:28 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,6 @@ static void	ft_initio(t_io *io, const char *format, va_list ap)
 	va_end(ap);
 	io->nprinted = 0;
 	io->position = 0;
-}
-
-static void	ft_initmodifiers(t_mod *modifiers)
-{
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	mod->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
 }
 
 int	ft_printf(const char *format, ...)

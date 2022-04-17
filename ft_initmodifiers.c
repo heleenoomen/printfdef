@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parseconv.c                                     :+:      :+:    :+:   */
+/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 17:59:09 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/17 18:04:55 by hoomen           ###   ########.fr       */
+/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/17 18:56:39 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
-
-static const CONSPECS = "cspdiouxX%%"
-
-void	ft_parseconv(t_io *io, t_mod *modifiers)
+void	ft_initmodifiers(t_mod *modifiers)
 {
-	if (!ft_strchr(io->format[io->position], CONSPECS)
-		ft_modifiers(io, modifiers);
-	else
-		ft_conspecs(io, modifiers);
+	modifiers->altform = 0;
+	modifiers->zeropad = 0;
+	modifiers->leftadj = 0;
+	modifiers->space = 0;
+	modifiers->plus = 0;
+	modifiers->width = 0;
+	modifiers->precision = -1;
+	mod->adj_precision = 0;
+	modifiers->conspec = 0;
+	modifiers->base = 0;
+	modifiers->putminus = 0;
 }
