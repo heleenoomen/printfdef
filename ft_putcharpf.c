@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
+/*   ft_putcharpf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 19:40:45 by hoomen           ###   ########.fr       */
+/*   Created: 2022/04/18 19:25:37 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/18 19:45:48 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_initmodifiers(t_mod *modifiers)
+void	ft_putcharpf(t_io *io, t_mod *modifiers)
 {
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	mod->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
-	modifiers->pads = 0;
+	char	c;
+
+	c = (char) va_arg(io->ap, int);
+	modifiers->pads = modifiers->width - 1;
+	if (!modifiers->leftadj && modifiers->pads)
+		ft_pad(io, modifiers)
+	io->nprinted = write(1, &c, 1);
+	if (modifiers->leftadj && modifiers->pads)
+		ft_pad(io, modifiers)
 }

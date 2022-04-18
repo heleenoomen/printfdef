@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
+/*   ft_putintpf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 19:40:45 by hoomen           ###   ########.fr       */
+/*   Created: 2022/04/18 19:59:47 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/18 20:08:55 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_initmodifiers(t_mod *modifiers)
+#include"ft_printf.h"
+
+void	ft_putintpf(t_io *io, t_mod *modifiers)
 {
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	mod->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
-	modifiers->pads = 0;
+	int	nbr;
+
+	nbr = va_arg(io->ap, int);
+	if (nbr < 0)
+	{
+		modifiers->putminus = 1;
+		nbr = nbr * -1;
+	}
+	ft_putnbrpf(io, modifiers, (unsigned long int) nbr);
 }

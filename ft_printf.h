@@ -20,6 +20,7 @@ typedef struct s_mod
 	char	conspec;
 	int		base;
 	int		putminus;
+	int		pads;
 }			t_mod;
 
 typedef struct s_io

@@ -6,15 +6,15 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:26:43 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/17 19:03:08 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/18 19:13:22 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-static const	ALLSYMBOLS = "cspdiouxX%%#-+ .*0123456789";
-static const	CONSPECS = "cspdiouxX%%";
-static const	MODS = "#-+ .*0123456789";
+static const char	*ALLSYMBOLS = "cspdiouxX%%#-+ .*0123456789";
+static const char	*CONSPECS = "cspdiouxX%%";
+static const char	*MODS = "#-+ .*0123456789";
 
 void ft_parse(t_io *io, t_mod *modifiers)
 {
@@ -25,7 +25,6 @@ void ft_parse(t_io *io, t_mod *modifiers)
 		else if (ft_strchr(ALLSYMBOLS, io->format[io->position + 1]))
 		{
 			io->position++;
-			if (io->format[io->position])
 			while (ft_strchr(MODS, io->format[io->position]))
 			{
 				ft_modifiers(io, modifiers);
