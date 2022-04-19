@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsint.c                                     :+:      :+:    :+:   */
+/*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:23:51 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 20:53:52 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 14:58:57 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include"ft_printf.h"
 
 static int	ft_numlen(t_mod *modifiers, long unsigned int nbr)
 {
@@ -27,20 +29,49 @@ static int	ft_numlen(t_mod *modifiers, long unsigned int nbr)
 	return (numlen);
 }
 
+static void	ft_putprefix(t_io *io, t_mod *modifiers)
+{
+	if (modifiers->putminus)
+		io->nprinted += write(1, "-", 1);
+	else if (modifiers->plus)
+		io->nprinted += write(1, "+", 1);
+	else if (modifiers->space)
+		io->nprinted += write(1, " ", 1);
+	else if (modifiers->altform && modifiers->conspec == 'X')
+		io->nprinted += write(1, "0X", 2);
+	else if (modifiers->altform)
+		io->nprinted += write(1, "0x", 2);
+}
 
-void	ft_putunsint(t_io *io, t_mod *modifiers, unsigned long int nbr)
+static void	ft_putpreczeros(t_io *io, t_mod *modifiers, int len)
+{
+	int	preczeros;
+
+	if (modifiers->precision > len)
+	{
+		preczeros = modifiers->precision - len;
+		while (preczeros)
+		{
+			io->nprinted += write(1, "0", 1);
+			preczeros--;
+		}
+	}
+}
+
+void	ft_printnbr(t_io *io, t_mod *modifiers, unsigned long int nbr)
 {
 	int	len;
 
-	modifiers->pads = modifiers->width - ft_numlen(nbr) - ;
-	if (modifiers->zeros && !modifiers->leftadj)
+	len = ft_numlen(modifiers, nbr);
+	modifiers->pads = modifiers->width - len - modifiers->precision;
+	if (modifiers->zeropad)
 		ft_putprefix(io, modifiers);
 	if (!modifiers->leftadj && modifiers->pads)
-		ft_putpads(io, modifiers);
-	if (!modifiers->zeros || modifiers->leftadj)
+		ft_pad(io, modifiers);
+	if (!modifiers->zeropad)
 		ft_putprefix(io, modifiers);
-	ft_putpreczeros(io, mod, len);
-	ft_putnbrpf(io, mod, nbr);
+	ft_putpreczeros(io, modifiers, len);
+	ft_putnbrpf(io, modifiers, nbr);
 	if (modifiers->pads && modifiers->leftadj)
-		ft_putpads(io, modifiers);
+		ft_pad(io, modifiers);
 }

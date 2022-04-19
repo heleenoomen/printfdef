@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:48:05 by hoomen           ###   ########.fr       */
+/*   Created: 2022/03/22 18:33:58 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 17:37:13 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include"libft.h"
 
-void	ft_initmodifiers(t_mod *modifiers)
+void	ft_bzero(void *s, size_t n)
 {
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	modifiers->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
-	modifiers->pads = 0;
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
 }

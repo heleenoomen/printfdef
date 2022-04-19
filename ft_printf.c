@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:59:17 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/17 18:56:28 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 14:35:42 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	ft_initio(&io, format, ap);
-	va_end(ap);
 	ft_initmodifiers(&modifiers);
 	ft_parse(&io, &modifiers);
+	va_end(ap);
 	return (io.nprinted);
 }
 

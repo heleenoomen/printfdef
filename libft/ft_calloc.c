@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:48:05 by hoomen           ###   ########.fr       */
+/*   Created: 2022/03/26 18:29:30 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 17:29:14 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include"libft.h"
 
-void	ft_initmodifiers(t_mod *modifiers)
+void	*ft_calloc(size_t count, size_t size)
 {
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	modifiers->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
-	modifiers->pads = 0;
+	size_t	bytes;
+	char	*ptr;
+
+	ptr = malloc(sizeof(char) * size * count);
+	if (ptr == NULL)
+		return (NULL);
+	bytes = sizeof(char) * size * count;
+	while (bytes)
+	{
+		ptr[bytes - 1] = '\0';
+		bytes --;
+	}
+	return ((void *)ptr);
 }

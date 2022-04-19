@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putintpf.c                                      :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 19:59:47 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 20:08:55 by hoomen           ###   ########.fr       */
+/*   Created: 2022/04/01 09:37:16 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 16:46:44 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include"libft.h"
 
-void	ft_putintpf(t_io *io, t_mod *modifiers)
+int	ft_lstsize(t_list *lst)
 {
-	int	nbr;
+	int	size;
 
-	nbr = va_arg(io->ap, int);
-	if (nbr < 0)
+	size = 0;
+	while (lst)
 	{
-		modifiers->putminus = 1;
-		nbr = nbr * -1;
+		size++;
+		lst = lst->next;
 	}
-	ft_putnbrpf(io, modifiers, (unsigned long int) nbr);
+	return (size);
 }

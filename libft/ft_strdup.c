@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putcharpf.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 19:25:37 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 19:45:48 by hoomen           ###   ########.fr       */
+/*   Created: 2022/03/28 11:03:26 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 17:33:12 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putcharpf(t_io *io, t_mod *modifiers)
-{
-	char	c;
+#include"libft.h"
 
-	c = (char) va_arg(io->ap, int);
-	modifiers->pads = modifiers->width - 1;
-	if (!modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers)
-	io->nprinted = write(1, &c, 1);
-	if (modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers)
+char	*ft_strdup(const char *s1)
+{
+	char	*s;
+	int		i;
+
+	s = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		s[i] = s1[i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
 }

@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:06:01 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 20:23:36 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 15:00:35 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void ft_putnbrpf(t_io *io, t_mod *modifiers, unsigned long int nbr)
 {
 	char c;
 
-	if (nbr < modifiers->base)
+	if (nbr < (unsigned long int) modifiers->base)
 	{
 		c = ft_choosechar(modifiers, nbr);
-		io->nprinted = write(1, &c, 1);
+		io->nprinted += write(1, &c, 1);
 		return ;
 	}
-	ft_putnbr(io, modifiers, nbr / modifiers->base)
+	ft_putnbrpf(io, modifiers, nbr / modifiers->base);
 	c = ft_choosechar(modifiers, nbr % modifiers->base);
-	io->nprinted = write(1, &c, 1);
+	io->nprinted += write(1, &c, 1);
 }

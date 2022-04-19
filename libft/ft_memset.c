@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstrpf.c                                      :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 19:46:25 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/18 19:59:24 by hoomen           ###   ########.fr       */
+/*   Created: 2022/03/22 17:05:24 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 17:31:02 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putstrpf(t_io *io, t_mod *modifiers)
+#include"libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	len;
-	char	*s
+	char	*temp;
 	size_t	i;
 
-	s = va_arg(io->ap, char *);
-	len = ft_strlen(s);
-	if (modifiers->precision >= 0)
-		len = (size_t) modifiers->precision;
-	if (len < (size_t) modifiers->width)
-		modifiers->pads = modifiers->width - (int) len;
-	if (!modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers);
 	i = 0;
+	temp = (char *)b;
 	while (i < len)
 	{
-		nprinted = write(1, s + i, 1);
+		temp[i] = (unsigned char)c;
 		i++;
 	}
-	if (modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers);
+	return (b);
 }

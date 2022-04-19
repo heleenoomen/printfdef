@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initmodifiers.c                                 :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/17 18:56:14 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:48:05 by hoomen           ###   ########.fr       */
+/*   Created: 2022/03/23 11:48:04 by hoomen            #+#    #+#             */
+/*   Updated: 2022/04/02 17:30:55 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include "libft.h"
 
-void	ft_initmodifiers(t_mod *modifiers)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	modifiers->altform = 0;
-	modifiers->zeropad = 0;
-	modifiers->leftadj = 0;
-	modifiers->space = 0;
-	modifiers->plus = 0;
-	modifiers->width = 0;
-	modifiers->precision = -1;
-	modifiers->adj_precision = 0;
-	modifiers->conspec = 0;
-	modifiers->base = 0;
-	modifiers->putminus = 0;
-	modifiers->pads = 0;
+	char	*cdst;
+	char	*csrc;
+
+	cdst = (char *)dst;
+	csrc = (char *)src;
+	if (src >= dst)
+		return (ft_memcpy(dst, src, len));
+	else
+	{
+		while (len > 0)
+		{
+			cdst[len - 1] = csrc[len - 1];
+			len--;
+		}
+	}
+	return (dst);
 }
