@@ -6,11 +6,12 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:59:17 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:35:42 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 16:48:26 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
+#include<stdlib.h>
 
 static void	ft_initio(t_io *io, const char *format, va_list ap)
 {
@@ -35,7 +36,13 @@ int	ft_printf(const char *format, ...)
 	return (io.nprinted);
 }
 
-int main(void)
-{
-	ft_printf("these are three ints %i %i %i\n", 3, 97, -348);
-}
+// int main(void)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = ft_printf("start_%*.*.*x_end\n", 27, 17, 19, 47583);
+// 	j = printf("start_%*.*.*x_end\n", 27, 17, 19, 47583);
+// 	printf("%i\n%i\n", i, j);
+// 	system("leaks a.out");
+// }

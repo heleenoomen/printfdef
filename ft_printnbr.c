@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:23:51 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:58:57 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 16:40:03 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@ static int	ft_numlen(t_mod *modifiers, long unsigned int nbr)
 		numlen++;
 		nbr = nbr / modifiers->base;
 	}
-	if (modifiers->putminus || modifiers->plus || modifiers->space)
-		numlen++;
-	if (modifiers->altform)
-		numlen = numlen + 2;
+	//if (modifiers->putminus || modifiers->plus || modifiers->space)
+		//numlen++;
+	//if (modifiers->altform)
+		//numlen = numlen + 2;
 	return (numlen);
+}
+
+static int	ft_preflen(t_mod *modifiers)
+{
+	int preflen;
+
+	if (modifiers->putminus || modifiers->plus || modifiers->space)
+		preflen = 1;
+	if (modifiers->altform)
+		preflen = 2;
+	return (preflen);
 }
 
 static void	ft_putprefix(t_io *io, t_mod *modifiers)
@@ -60,17 +71,24 @@ static void	ft_putpreczeros(t_io *io, t_mod *modifiers, int len)
 
 void	ft_printnbr(t_io *io, t_mod *modifiers, unsigned long int nbr)
 {
-	int	len;
+	int	numlen;
+	int	preflen;
+	int	preczeros;
 
-	len = ft_numlen(modifiers, nbr);
-	modifiers->pads = modifiers->width - len - modifiers->precision;
+	numlen = ft_numlen(modifiers, nbr);
+	preflen = ft_preflen(modifiers);
+	preczeros = 0;
+	if (modifiers->precision > numlen)
+		preczeros = modifiers->precision - numlen;
+	if (modifiers->width > numlen + preczeros + preflen)
+		modifiers->pads = modifiers->width - numlen - preczeros - preflen;
 	if (modifiers->zeropad)
 		ft_putprefix(io, modifiers);
 	if (!modifiers->leftadj && modifiers->pads)
 		ft_pad(io, modifiers);
 	if (!modifiers->zeropad)
 		ft_putprefix(io, modifiers);
-	ft_putpreczeros(io, modifiers, len);
+	ft_putpreczeros(io, modifiers, numlen);
 	ft_putnbrpf(io, modifiers, nbr);
 	if (modifiers->pads && modifiers->leftadj)
 		ft_pad(io, modifiers);

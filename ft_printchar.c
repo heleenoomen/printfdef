@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:25:37 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:55:26 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 15:18:52 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_printchar(t_io *io, t_mod *modifiers)
 		c = '%';
 	else
 		c = (char) va_arg(io->ap, int);
-	modifiers->pads = modifiers->width - 1;
+	if (modifiers-> width > 1)
+		modifiers->pads = modifiers->width - 1;
 	if (!modifiers->leftadj && modifiers->pads)
 		ft_pad(io, modifiers);
 	io->nprinted += write(1, &c, 1);

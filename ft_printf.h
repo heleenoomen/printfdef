@@ -41,5 +41,6 @@ void	ft_printstr(t_io *io, t_mod *modifiers);
 void	ft_printint(t_io *io, t_mod *modifiers);
 void	ft_printnbr(t_io *io, t_mod *modifiers, unsigned long int nbr);
 void	ft_putnbrpf(t_io *io, t_mod *modifiers, unsigned long int nbr);
+void	ft_printmods(t_io *io, t_mod *modifiers);
 
 #endif

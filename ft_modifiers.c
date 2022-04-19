@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 18:05:05 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:53:17 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 16:21:21 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,30 @@ static void	ft_precision(t_io *io, t_mod *modifiers)
 {
 	if (io->format[io->position] == '*')
 	{
-		modifiers->width = va_arg(io->ap, int);
+		modifiers->precision = va_arg(io->ap, int);
 		modifiers->adj_precision = 0;
 		return ;
 	}
 	else if (!ft_isdigit(io->format[io->position - 1]))
-		modifiers->width = io->format[io->position] - '0';
+		modifiers->precision = io->format[io->position] - '0';
 	else
-		modifiers->width = (modifiers->width * 10) + (io->format[io->position] - '0');
+		modifiers->precision = (modifiers->precision * 10) + (io->format[io->position] - '0');
 	if (!ft_isdigit(io->format[io->position + 1]))
 		modifiers->adj_precision = 0;
 }
 
 void	ft_modifiers(t_io *io, t_mod *modifiers)
 {
+	if (io->format[io->position] == '0' && !ft_isdigit(io->format[io->position - 1])
+		&& io->format[io->position - 1] != '.')
+		modifiers->zeropad = 1;
 	if (ft_isdigit(io->format[io->position]) && !modifiers->adj_precision)
 		ft_width(io, modifiers);
 	else if (ft_isdigit(io->format[io->position]))
 		ft_precision(io, modifiers);
 	else if (io->format[io->position] == '*' && !modifiers->adj_precision)
 		ft_width(io, modifiers);
-	else if (io->format[io->position])
+	else if (io->format[io->position] == '*')
 		ft_precision(io, modifiers);
 	else if (io->format[io->position] == '+')
 		modifiers->plus = 1;

@@ -6,7 +6,7 @@
 #    By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:22:54 by hoomen            #+#    #+#              #
-#    Updated: 2022/04/19 14:55:07 by hoomen           ###   ########.fr        #
+#    Updated: 2022/04/19 16:48:07 by hoomen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC		=	cc
 FLAGS 	=	-Wall -Wextra -Werror
 # file variables
 NAME	= libftprintf.a
-MAIN	= initmodifiers parse modifiers convert printchar pad printstr printint printnbr putnbrpf
+MAIN	= printf initmodifiers parse modifiers convert printchar pad printstr printint printnbr putnbrpf\
 LIBFT	= isdigit strlen strchr
 HEADER	= ft_printf.h
 MAINFILES	= $(addprefix ft_,$(addsuffix .c, $(MAIN)))
@@ -23,7 +23,7 @@ LIBFTFILES	= $(addprefix libft/ft_,$(addsuffix .c, $(LIBFT)))
 MAINOBJS	= $(MAINFILES:.c=.o)
 LIBFTOBJS	= $(LIBFTFILES:.c=.o)
 
-all : $(NAME)
+all : $(NAME) clean
 
 $(NAME): $(MAINOBJS) $(LIBFTOBJS)
 	@ar rc $(NAME) $(MAINOBJS) $(LIBFTOBJS)
@@ -42,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

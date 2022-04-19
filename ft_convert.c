@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:14:44 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 14:42:20 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 16:09:24 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_convert(t_io *io, t_mod *modifiers)
 	unsigned long int	nbr;
 
 	modifiers->conspec = io->format[io->position];
+	//printf("\nmodifiers->conspec = %c\n", modifiers->conspec);
 	ft_adjustmods(modifiers);
 	if (modifiers->conspec == 'c' || modifiers->conspec == '%')
 		ft_printchar(io, modifiers);
