@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:59:17 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 17:00:48 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:29:28 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_printf(const char *format, ...)
 // 	int i;
 // 	int j;
 
-// 	i = ft_printf("start_%*.*.*x_end\n", 27, 17, 19, 47583);
-// 	j = printf("start_%*.*.*x_end\n", 27, 17, 19, 47583);
+// 	i = ft_printf(" %#x \n", 0);
+// 	j = printf(" %#x \n", 0);
 // 	printf("%i\n%i\n", i, j);
-// 	system("leaks a.out");
+// 	//system("leaks a.out");
 // }

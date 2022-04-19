@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:14:44 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 17:35:46 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:33:51 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	ft_adjustmods(t_mod *mods)
 		mods->plus = 0;
 		mods->space = 0;
 	}
-	if (mods->conspec == 'p')
-		mods->altform = 1;
 	if (mods->conspec == 'x' || mods->conspec == 'X'
 		|| mods->conspec == 'p')
 		mods->base = 16;
-	if (mods->precision && mods->conspec != 'c'
+	if (mods->precision >= 0 && mods->conspec != 'c'
 		&& mods->conspec != 's' && mods->conspec != '%')
 		mods->zeropad = 0;
 }
