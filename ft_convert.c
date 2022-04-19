@@ -6,53 +6,49 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:14:44 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 16:09:24 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 17:35:46 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-void ft_adjustmods(t_mod *modifiers)
+void	ft_adjustmods(t_mod *mods)
 {
-	if (modifiers->conspec ==  'i' || modifiers->conspec == 'd' 
-		|| modifiers->conspec == 'u')
+	if (mods->conspec == 'i' || mods->conspec == 'd'
+		|| mods->conspec == 'u')
 	{
-		modifiers->altform = 0;
-		modifiers->base = 10;
+		mods->altform = 0;
+		mods->base = 10;
 	}
-	if (modifiers->conspec == 'u' || modifiers->conspec == 'x' || 
-		modifiers->conspec == 'X' || modifiers->conspec == 'p')
+	if (mods->conspec == 'u' || mods->conspec == 'x'
+		|| mods->conspec == 'X' || mods->conspec == 'p')
 	{
-		modifiers->plus = 0;
-		modifiers->space = 0;
+		mods->plus = 0;
+		mods->space = 0;
 	}
-	if (modifiers->conspec == 'p')
-		modifiers->altform = 1;
-	if (modifiers->conspec == 'x' || modifiers->conspec == 'X' 
-		|| modifiers->conspec == 'p')
-		modifiers->base = 16;
-	if (modifiers->precision && modifiers->conspec != 'c' 
-		&& modifiers->conspec != 's' && modifiers->conspec != '%')
-		modifiers->zeropad = 0;
+	if (mods->conspec == 'p')
+		mods->altform = 1;
+	if (mods->conspec == 'x' || mods->conspec == 'X'
+		|| mods->conspec == 'p')
+		mods->base = 16;
+	if (mods->precision && mods->conspec != 'c'
+		&& mods->conspec != 's' && mods->conspec != '%')
+		mods->zeropad = 0;
 }
 
-void	ft_convert(t_io *io, t_mod *modifiers)
+void	ft_convert(t_io *io, t_mod *mods)
 {
-	unsigned long int	nbr;
-
-	modifiers->conspec = io->format[io->position];
-	//printf("\nmodifiers->conspec = %c\n", modifiers->conspec);
-	ft_adjustmods(modifiers);
-	if (modifiers->conspec == 'c' || modifiers->conspec == '%')
-		ft_printchar(io, modifiers);
-	else if (modifiers->conspec == 's')
-		ft_printstr(io, modifiers);
-	else if (modifiers->conspec == 'i' || modifiers->conspec == 'd')
-		ft_printint(io, modifiers);
+	mods->conspec = io->format[io->pos];
+	ft_adjustmods(mods);
+	if (mods->conspec == 'c' || mods->conspec == '%')
+		ft_printchar(io, mods);
+	else if (mods->conspec == 's')
+		ft_printstr(io, mods);
+	else if (mods->conspec == 'i' || mods->conspec == 'd')
+		ft_printint(io, mods);
+	else if (mods->conspec == 'u' || mods->conspec == 'x'
+		|| mods->conspec == 'X')
+		ft_printnbr(io, mods, (unsigned long int) va_arg(io->ap, unsigned int));
 	else
-	{
-		nbr = va_arg(io->ap, unsigned long int);
-		ft_printnbr(io, modifiers, nbr);
-	}
-
+		ft_printnbr(io, mods, va_arg(io->ap, unsigned long int));
 }

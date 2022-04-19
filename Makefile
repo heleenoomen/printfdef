@@ -6,7 +6,7 @@
 #    By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:22:54 by hoomen            #+#    #+#              #
-#    Updated: 2022/04/19 16:48:07 by hoomen           ###   ########.fr        #
+#    Updated: 2022/04/19 17:12:14 by hoomen           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC		=	cc
 FLAGS 	=	-Wall -Wextra -Werror
 # file variables
 NAME	= libftprintf.a
-MAIN	= printf initmodifiers parse modifiers convert printchar pad printstr printint printnbr putnbrpf\
+MAIN	= printf initmodifiers parse modifiers convert printchar pad printstr printint printnbr putnbrpf
 LIBFT	= isdigit strlen strchr
 HEADER	= ft_printf.h
 MAINFILES	= $(addprefix ft_,$(addsuffix .c, $(MAIN)))

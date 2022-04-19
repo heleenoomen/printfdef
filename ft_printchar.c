@@ -6,25 +6,25 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:25:37 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 15:18:52 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 16:57:14 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-void	ft_printchar(t_io *io, t_mod *modifiers)
+void	ft_printchar(t_io *io, t_mod *mods)
 {
 	char	c;
 
-	if (modifiers->conspec == '%')
+	if (mods->conspec == '%')
 		c = '%';
 	else
 		c = (char) va_arg(io->ap, int);
-	if (modifiers-> width > 1)
-		modifiers->pads = modifiers->width - 1;
-	if (!modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers);
+	if (mods-> width > 1)
+		mods->pads = mods->width - 1;
+	if (!mods->leftadj && mods->pads)
+		ft_pad(io, mods);
 	io->nprinted += write(1, &c, 1);
-	if (modifiers->leftadj && modifiers->pads)
-		ft_pad(io, modifiers);
+	if (mods->leftadj && mods->pads)
+		ft_pad(io, mods);
 }
