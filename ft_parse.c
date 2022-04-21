@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:26:43 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 17:53:26 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/19 18:46:44 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_parse(t_io *io, t_mod *mods)
 			while (ft_strchr(g_mods, io->format[io->pos]))
 			{
 				ft_modifiers(io, mods);
-				//ft_printmods(io, mods);
 				io->pos++;
 			}
 			if (ft_strchr(g_conspecs, io->format[io->pos]))

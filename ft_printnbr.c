@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:23:51 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 18:27:30 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/20 18:54:03 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_numlen(t_mod *mods, long unsigned int nbr)
 {
 	int	numlen;
 
+	if (!mods->precision && !nbr)
+		return (0);
 	numlen = 1;
 	while (nbr / mods->base > 0)
 	{
@@ -90,7 +92,8 @@ void	ft_printnbr(t_io *io, t_mod *mods, unsigned long int nbr)
 	if (!mods->zeropad)
 		ft_putprefix(io, mods, nbr);
 	ft_putpreczeros(io, mods, numlen);
-	ft_putnbrpf(io, mods, nbr);
+	if (mods->precision || nbr)
+		ft_putnbrpf(io, mods, nbr);
 	if (mods->pads && mods->leftadj)
 		ft_pad(io, mods);
 }

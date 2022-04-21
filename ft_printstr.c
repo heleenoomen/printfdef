@@ -6,7 +6,7 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 19:46:25 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 17:20:16 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/20 13:37:56 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ void	ft_printstr(t_io *io, t_mod *mods)
 	s = va_arg(io->ap, char *);
 	if (s == NULL)
 		s = "(null)";
-	if (mods->precision >= 0)
+	len = ft_strlen(s);
+	if (mods->precision >= 0 && (size_t) mods->precision < len)
 		len = (size_t) mods->precision;
-	else
-		len = ft_strlen(s);
 	if (len < (size_t) mods->width)
 		mods->pads = mods->width - (int) len;
 	if (!mods->leftadj && mods->pads)

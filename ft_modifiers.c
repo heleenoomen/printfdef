@@ -12,11 +12,25 @@
 
 #include"ft_printf.h"
 
+static int	ft_zeroisflag(t_io *io)
+{
+	int	i;
+
+	i = 1;
+	while (io->format[io->pos - i] == '0')
+		i++;
+	if (ft_isdigit(io->format[io->pos - i]) || io->format[io-> pos - i] == '.')
+		return (0);
+	return (1);
+}
+
 static void	ft_width(t_io *io, t_mod *mods)
 {
 	if (io->format[io->pos] == '*')
 		mods->width = va_arg(io->ap, int);
-	else if (io->pos == 0 || !ft_isdigit(io->format[io->pos - 1]))
+	else if (io->format[io->pos - 1] == '0' && ft_zeroisflag(io))
+		mods->width = io->format[io->pos] - '0';
+	else if (!ft_isdigit(io->format[io->pos - 1]))
 		mods->width = io->format[io->pos] - '0';
 	else
 		mods->width = (mods->width * 10) + (io->format[io->pos] - '0');
@@ -40,10 +54,9 @@ static void	ft_precision(t_io *io, t_mod *mods)
 
 void	ft_modifiers(t_io *io, t_mod *mods)
 {
-	if (io->format[io->pos] == '0' && !ft_isdigit(io->format[io->pos - 1])
-		&& io->format[io->pos - 1] != '.')
+	if (io->format[io->pos] == '0' && ft_zeroisflag(io))
 		mods->zeropad = 1;
-	if (ft_isdigit(io->format[io->pos]) && !mods->adj_precision)
+	else if (ft_isdigit(io->format[io->pos]) && !mods->adj_precision)
 		ft_width(io, mods);
 	else if (ft_isdigit(io->format[io->pos]))
 		ft_precision(io, mods);
@@ -62,6 +75,7 @@ void	ft_modifiers(t_io *io, t_mod *mods)
 	else if (io->format[io->pos] == '.')
 	{
 		mods->precision = 0;
-		mods->adj_precision = 1;
+		if (ft_isdigit(io->format[io->pos + 1]))
+			mods->adj_precision = 1;
 	}
 }

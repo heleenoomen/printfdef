@@ -6,18 +6,15 @@
 /*   By: hoomen <hoomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 17:04:38 by hoomen            #+#    #+#             */
-/*   Updated: 2022/04/19 18:31:57 by hoomen           ###   ########.fr       */
+/*   Updated: 2022/04/20 15:43:20 by hoomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include<unistd.h>
-# include<stdlib.h>
 # include<stdarg.h>
 # include"libft/libft.h"
-# include<stdio.h>
 
 typedef struct s_mod
 {
